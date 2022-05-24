@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>2</horstretch>
     <verstretch>2</verstretch>
    </sizepolicy>
@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog{align-items: center; justify-content: center;}</string>
+   <string notr="true"/>
   </property>
   <widget class="QLineEdit" name="email">
    <property name="geometry">
