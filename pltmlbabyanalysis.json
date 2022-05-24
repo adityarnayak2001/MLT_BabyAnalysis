@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pltmlbabyanalysis",
+  "private_key_id": "f5e932a9f6c198d15c08f3de7e5b722a5af05dda",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJASCmbY38IvDz\n8HEhay/NUCqMM5WVgmJBiBKCRQ1xqj7ecr3OeXix2ryLOGI3VRi73VUXQ3df1CmG\nPGC4TfRYplQNWpjXLmwRz+vL2/GMRYMsK+YerxHwx08REM8mgD1OXN337JMVHXmF\n7ynfjsK0eVfzAxIUNKnzpRg9cRCo9WoHH/IY7QLNkUX/rCreUmgnB7poKzKR1Y5H\nocY58XFyCZbbYUcKA5uS3ULwYsMYlaMBVFeVOz6NnJOH2bTpEkAranYtz1HLLZL3\n2yigVszMqqWvCKyalH8Mh4IAGuZYacea0secdOOFCvy4VGJ9lSX96UqvuCEzDVw2\ndieKrZ1dAgMBAAECggEADkX8BiinbK0kHes7QI7c+rmWzxSzdyxAD++hHAqm24ul\n7tch1VfY4A0fvTJVMlRJO/K9CFISvji4DiYBdEHM3r98Hn3XEDvl3rBWFshyjNRu\n1Fco5MSBajvgLt6m5x2aI0aci7txiMFQ3Ne3FuUk75RItrzHSHoI5RoaVsEA2HTp\nXZ8kJYYliEDEcLmxAEpA0YSoZzu9AtunfGbtGwGEsm8CidhCzJbtDr41G/btJbfZ\nFq9/ZYYvVPlnhdaemsb74Hv89DGr7o81gDsvt8LqMUl5iq4cF3HVcoTk+ZP8i6CA\nRVkfU28cnUnfmiyQZVn1vIa2teakQEVL8vopsC2BnQKBgQD3eWQCjkfQdvy0SREj\n1wyVDiS8PAthQtOY9ndUKAoJlstmle1VX+S46NQWlJ+sP+ommlNOlf4cIQGy7FPy\n76TUclp0TH7FgGgXCdvdve1R4HkTTSvI1zteb6LmTHXfOaLNNelXdgLI6bYfzp+x\nyhczVYmURzGE4jkRl6bEinajywKBgQDP7eUHbw8KnzKPc+16jEUi8xdo2fdiOVpC\n8UB0RiZlZ9m+d1Ab3VDixTqGOO20M74iMQqJQR5N8D6ce3SdVrCjeeA2rbcIk8hJ\nRn2YdfGhJ1XdcyTPTWQwqsIoEbkLUnjTw6jPRhiAv0InqtJUpJ66cemS1rusvDWX\nCNbD6ysudwKBgEGtfMZU3mhL+9sY/SyG2TcBzuwJ/3crlh6lYpv6GFfdJlQufBNJ\nZNlSKV9oyEudltXx5SQZGJx8ggfrQohZ42PiiXEOECL4ZiefHTPnQQGW0ms18uXV\ngVMZy6DVL/8zO6q8oRXuIuURaZ1dZ/J2UNv12pJ4poK+yyiJF+BXYw8rAoGAcdlk\nSgm5RqucV4e2RB+By30nGDYgihu1HGpUTFYMuAGA7BUQO/GWVFSBkvSg0sZyGO6Z\nQkXxfeNJpQzD8VKCLUCST94WFhA03kpGgrAxuXd8QGDHiuppLWySGrZ5h4WEuw6q\n47MRv4z5gBa8S7RHZPbyWYBSCmaTQTuJvISLhEkCgYBK7v1tG5cGrc62ccTirWrE\n/QCuZKuhaiAQ9gT1tk+3M2wnA+KWvJ0uAvqll94bnWA7jOHNcpLJ/7+aiAcw4x88\n/qN8kmDMeXysqrT7uZbnRb1pVz5sDd1BLhB4Z/ewlOo7kbvGvdEBhRc8dxONQT93\n7r9A/PaQVWRb7HjVi3XqSw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ghtps@pltmlbabyanalysis.iam.gserviceaccount.com",
+  "client_id": "114075599907335672276",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ghtps%40pltmlbabyanalysis.iam.gserviceaccount.com"
+}
