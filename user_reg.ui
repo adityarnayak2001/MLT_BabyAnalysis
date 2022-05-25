@@ -85,7 +85,7 @@
     <string>Affiliation</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
+  <widget class="QLineEdit" name="affiliation">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -98,7 +98,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="email">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -132,7 +132,7 @@
     <string>User Registration</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="username">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -142,11 +142,11 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="regButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>430</y>
+     <x>190</x>
+     <y>490</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -160,7 +160,7 @@
     <string>Register</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="name">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -170,7 +170,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="password">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -226,6 +226,40 @@
    </property>
    <property name="text">
     <string>Username</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>410</y>
+     <width>200</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Confirm Password</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="password_2">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>410</y>
+     <width>200</width>
+     <height>25</height>
+    </rect>
    </property>
   </widget>
  </widget>

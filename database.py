@@ -3,17 +3,22 @@ import sqlite3
 class userdbs:
     def __init__(self):
         conn = sqlite3.connect('mlt.db')
-        c = conn.cursor()
-        c.execute("CREATE TABLE IF NOT EXITS USERS(user_id integer PRIMARY KEY AUTOINCREMENT,"
-                    +"name VARCHAR(30), affiliation VARCHAR(30), number DECIMAL(10)"
-                    +"username VARCHAR(40), password VARCHAR(40), )")
+        self.c = conn.cursor()
+        self.c.execute("CREATE TABLE IF NOT EXISTS USERS(user_id integer PRIMARY KEY AUTOINCREMENT,"
+                    +"name VARCHAR(30), affiliation VARCHAR(30), number DECIMAL(10),"
+                    +"username VARCHAR(40), password VARCHAR(40))")
     
-    def validate_username_pass(username,password):
-        print()
+    def validate_username_pass(self,username,password):
+        self.c.execute("select * from users where username=\'"+username+"\' and password=\'"+password+"\'")
+        rows = self.c.fetchall()
+        if(len(rows)):
+            return True
+        else:
+            return False
     
-    def registration():
-        c.execute("INSERT INTO USERS ('username','password') VALUES ('aditya@gmail.com','aditya')")
+    def registration(self,data):
+        self.c.execute("INSERT INTO USERS ('name','affiliation','number','username','password') VALUES" 
+        +"(?,?,?,?,?)",(data['name'],data['affiliation'],data['username']))
 
-print('command executed succesfully')
-conn.commit()
-conn.close()
+    def close_connection(self):
+        self.conn.close()
