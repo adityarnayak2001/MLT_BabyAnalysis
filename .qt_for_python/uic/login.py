@@ -20,7 +20,7 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(2)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        Dialog.setStyleSheet("")
+        Dialog.setStyleSheet("QDialog{background-color:#7FCDCD}")
         self.email = QtWidgets.QLineEdit(Dialog)
         self.email.setGeometry(QtCore.QRect(230, 150, 200, 25))
         self.email.setObjectName("email")

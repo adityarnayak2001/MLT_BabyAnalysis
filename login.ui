@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QDialog{background-color:#7FCDCD}</string>
   </property>
   <widget class="QLineEdit" name="email">
    <property name="geometry">

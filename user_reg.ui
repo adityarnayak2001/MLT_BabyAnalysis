@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{background-color:#7FCDCD}</string>
+  </property>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
@@ -168,6 +171,9 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QLineEdit" name="password">

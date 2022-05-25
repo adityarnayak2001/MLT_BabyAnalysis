@@ -15,6 +15,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(500, 600)
+        Dialog.setStyleSheet("QDialog{background-color:#7FCDCD}")
         self.label_6 = QtWidgets.QLabel(Dialog)
         self.label_6.setGeometry(QtCore.QRect(40, 350, 200, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
@@ -77,6 +78,7 @@ class Ui_Dialog(object):
         self.regButton.setObjectName("regButton")
         self.name = QtWidgets.QLineEdit(Dialog)
         self.name.setGeometry(QtCore.QRect(270, 110, 200, 25))
+        self.name.setStyleSheet("")
         self.name.setObjectName("name")
         self.password = QtWidgets.QLineEdit(Dialog)
         self.password.setGeometry(QtCore.QRect(270, 350, 200, 25))
