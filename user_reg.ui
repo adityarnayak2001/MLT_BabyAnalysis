@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog{background-color:#7FCDCD}</string>
+   <string notr="true">background-color: rgb(213, 235, 255);</string>
   </property>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
@@ -97,6 +97,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -110,14 +113,17 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>140</x>
      <y>50</y>
-     <width>220</width>
-     <height>31</height>
+     <width>251</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -143,6 +149,9 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QPushButton" name="regButton">
@@ -173,7 +182,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="password">
@@ -184,6 +193,9 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -239,8 +251,8 @@
     <rect>
      <x>40</x>
      <y>410</y>
-     <width>200</width>
-     <height>25</height>
+     <width>201</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -266,6 +278,9 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>

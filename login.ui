@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>400</height>
+    <width>506</width>
+    <height>397</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog{background-color:#7FCDCD}</string>
+   <string notr="true">background-color: rgb(143, 221, 255);</string>
   </property>
   <widget class="QLineEdit" name="email">
    <property name="geometry">
@@ -30,6 +30,9 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="password">
@@ -41,6 +44,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
    </property>
@@ -50,8 +56,8 @@
     <rect>
      <x>90</x>
      <y>150</y>
-     <width>100</width>
-     <height>25</height>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -74,7 +80,7 @@
     <rect>
      <x>90</x>
      <y>220</y>
-     <width>100</width>
+     <width>111</width>
      <height>25</height>
     </rect>
    </property>
@@ -98,8 +104,8 @@
     <rect>
      <x>180</x>
      <y>70</y>
-     <width>150</width>
-     <height>31</height>
+     <width>181</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="sizePolicy">
