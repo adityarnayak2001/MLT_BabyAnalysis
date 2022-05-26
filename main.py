@@ -8,6 +8,7 @@ class Login(QDialog):
     def __init__(self):
         super(Login,self).__init__()
         loadUi("login.ui",self)
+        self.db = userdbs()
         self.loginButton.clicked.connect(self.loginfunction)
         self.regButton.clicked.connect(self.gotocreate)
 
@@ -15,14 +16,13 @@ class Login(QDialog):
         email = self.email.text()
         password = self.password.text()
         print("Successfully logged in with email: ", email, "and password:", password)
-        self.db = userdbs()
         flag = self.db.validate_username_pass(email,password)
         if flag:
             print("Login successful")
-        #self.db.close_connection()
+            self.db.close_connection()
 
     def gotocreate(self):
-        self.db.close_connection()
+        # self.db.close_connection()
         createacc=CreateAcc()
         widget.addWidget(createacc)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -38,12 +38,13 @@ class CreateAcc(QDialog):
     def createaccfunction(self):
         name = self.name.text()
         affiliation = self.affiliation.text()
+        number = self.number.text()
         username = self.username.text()
         email = self.email.text()
         password = self.password.text()
         password2 = self.password2.text()
         reg_details = {"name":name,"affiliation":affiliation,"username":username,"email":email,
-                        "password":password,"password2":password2}
+                        "password":password,"number":number}
         self.db = userdbs()
         self.db.registration(reg_details)
         # if self.password.text()==self.confirmpass.text():
