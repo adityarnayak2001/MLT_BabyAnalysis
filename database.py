@@ -18,7 +18,8 @@ class userdbs:
     
     def registration(self,data):
         self.c.execute("INSERT INTO USERS ('name','affiliation','number','username','password') VALUES" 
-        +"(?,?,?,?,?)",(data['name'],data['affiliation'],data['username']))
+        +"(?,?,?,?,?)",(data['name'],data['affiliation'],data['username'],
+        data[number],data[username],data[password]))
 
     def close_connection(self):
         self.conn.close()
