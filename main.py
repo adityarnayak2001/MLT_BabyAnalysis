@@ -45,14 +45,18 @@ class CreateAcc(QDialog):
         password2 = self.password2.text()
         reg_details = {"name":name,"affiliation":affiliation,"username":username,"email":email,
                         "password":password,"number":number}
-        self.db = userdbs()
-        self.db.registration(reg_details)
+        if(reg_validate(reg_details)):
+            self.db = userdbs()
+            self.db.registration(reg_details)
         # if self.password.text()==self.confirmpass.text():
         #     password=self.password.text()
         #    print("Successfully created acc with email: ", email, "and password: ", password)
             # login=Login()
             # widget.addWidget(login)
             # widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def reg_validate():
+        pass
 
 app = QApplication(sys.argv)
 mainwindow = Login()

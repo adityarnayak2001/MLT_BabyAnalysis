@@ -21,7 +21,7 @@ class userdbs:
         self.c.execute("INSERT INTO USERS ('name','affiliation','number','email','username','password') VALUES" 
         +"(?,?,?,?,?,?)",(data['name'],data['affiliation'],int(data['number']),data['email'],data['username'],data['password']))
         self.conn.commit()
-        print(data)
+        # print(data)
 
     def close_connection(self):
         self.conn.close()
