@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>600</height>
+    <width>520</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(198, 184, 255);</string>
   </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
@@ -36,8 +39,8 @@
     <rect>
      <x>40</x>
      <y>250</y>
-     <width>200</width>
-     <height>25</height>
+     <width>201</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -88,6 +91,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
@@ -98,14 +104,17 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>120</x>
      <y>40</y>
-     <width>260</width>
-     <height>31</height>
+     <width>271</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -128,7 +137,7 @@
     <rect>
      <x>40</x>
      <y>400</y>
-     <width>200</width>
+     <width>211</width>
      <height>25</height>
     </rect>
    </property>
@@ -156,6 +165,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_4">
    <property name="geometry">
@@ -166,14 +178,17 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
      <x>40</x>
      <y>450</y>
-     <width>200</width>
-     <height>25</height>
+     <width>201</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -200,6 +215,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_6">
    <property name="geometry">
@@ -210,6 +228,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
@@ -217,7 +238,7 @@
      <x>40</x>
      <y>300</y>
      <width>200</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -241,7 +262,7 @@
      <x>40</x>
      <y>350</y>
      <width>200</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -268,6 +289,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -280,6 +304,10 @@
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+</string>
    </property>
    <property name="text">
     <string/>
