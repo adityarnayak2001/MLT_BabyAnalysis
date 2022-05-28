@@ -158,7 +158,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>530</y>
+     <y>550</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -318,6 +318,22 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="error">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>510</y>
+     <width>371</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

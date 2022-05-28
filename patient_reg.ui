@@ -112,7 +112,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>40</y>
+     <y>20</y>
      <width>271</width>
      <height>41</height>
     </rect>
@@ -130,6 +130,9 @@
    </property>
    <property name="text">
     <string>Patient Registration</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">

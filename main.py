@@ -9,6 +9,7 @@ class Login(QDialog):
     def __init__(self):
         super(Login,self).__init__()
         loadUi("login.ui",self)
+        self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.loginButton.clicked.connect(self.gotologin)
         self.regButton.clicked.connect(self.gotocreate)
 
@@ -37,13 +38,10 @@ class Login(QDialog):
                         msg.setText("Successfully Logged in.")
                         msg.exec_()
                     else:
-                        print("Incorrect password.")
-                        msg.setText("Incorrect Password")
-                        msg.exec_()
+                        self.error.setText("Incorrect password.")
             else:
                 print("Incorrect username.")
-                msg.setText("Incorrect Username")
-                msg.exec_()
+                self.error.setText("Incorrect username.")
             
     def gotocreate(self):
         createacc=CreateAcc()
@@ -60,8 +58,8 @@ class CreateAcc(QDialog):
 
     def createaccfunction(self):
         msg = QMessageBox()
-        msg.setIcon(QMessageBox.Critical)
-        msg.setWindowTitle("Error")
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle("Success.")
         
         name = self.name.text()
         affiliation = self.affiliation.text()
@@ -73,13 +71,11 @@ class CreateAcc(QDialog):
         
         if len(name)==0 or len(affiliation)==0 or len(number)==0 or len(username)==0 or len(email)==0 or len(password)==0 or len(password2)==0:
             print("Please fill in all inputs.")
-            msg.setText("Please fill in all inputs.")
-            msg.exec_()
+            self.error.setText("Please input all fields.")
 
         elif password!=password2:
             print("Passwords do not match.")
-            msg.setText("Passwords do not match.")
-            msg.exec_()
+            self.error.setText("Passwords do not match.")
         else:
             conn = sqlite3.connect("mlt.db")
             cur = conn.cursor()
@@ -91,6 +87,8 @@ class CreateAcc(QDialog):
             loginPage = Login()
             widget.addWidget(loginPage)
             widget.setCurrentIndex(widget.currentIndex()+1)
+            msg.setText("User Registration Successfull.")
+            msg.exec_()
 
 app = QApplication(sys.argv)
 mainwindow = Login()
