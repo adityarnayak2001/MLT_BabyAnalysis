@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
 from PyQt5.uic import loadUi    
 
@@ -18,18 +19,32 @@ class Login(QDialog):
         if len(username)==0 or len(password)==0:
             self.error.setText("Please input all fields.")
         else:
-            conn = sqlite3.connect("mlt.db")
-            cur = conn.cursor()
-            query = 'SELECT password FROM USERS WHERE username = \''+username+"\'"
-            cur.execute(query)
-            #result_pass = cur.fetchone()
-            query_result = cur.fetchone()[0]
-            if query_result is not None:
-                print("Successfully logged in.")
-                print(query_result)
-            else:
-                print("Invalid username or password.")
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Incorrect Username or Password")
+            msg.setWindowTitle("Error")
 
+            conn = sqlite3.connect("mlt.db")
+            query = 'SELECT password FROM USERS WHERE username = \''+username+"\'"
+            cur = conn.execute(query)
+            user = cur.fetchone()
+            if user is not None:
+                for pw in user:
+                    if password == pw:
+                        print("Successfully Logged in.")
+                        msg.setWindowTitle("Success.")
+                        msg.setIcon(QMessageBox.Information)
+                        msg.setText("Successfully Logged in.")
+                        msg.exec_()
+                    else:
+                        print("Incorrect password.")
+                        msg.setText("Incorrect Password")
+                        msg.exec_()
+            else:
+                print("Incorrect username.")
+                msg.setText("Incorrect Username")
+                msg.exec_()
+            
     def gotocreate(self):
         createacc=CreateAcc()
         widget.addWidget(createacc)
@@ -44,22 +59,31 @@ class CreateAcc(QDialog):
         #self.password2.setEchoMode(QtWidgets.QLineEdit.Password2)
 
     def createaccfunction(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setWindowTitle("Error")
+        
         name = self.name.text()
         affiliation = self.affiliation.text()
+        number = self.number.text()
         username = self.username.text()
         email = self.email.text()
         password = self.password.text()
         password2 = self.password2.text()
         
-        if len(name)==0 or len(affiliation)==0 or len(username)==0 or len(email)==0 or len(password)==0 or len(password2)==0:
-            self.error.setText("Please fill in all inputs.")
+        if len(name)==0 or len(affiliation)==0 or len(number)==0 or len(username)==0 or len(email)==0 or len(password)==0 or len(password2)==0:
+            print("Please fill in all inputs.")
+            msg.setText("Please fill in all inputs.")
+            msg.exec_()
 
         elif password!=password2:
-            self.error.setText("Passwords do not match.")
+            print("Passwords do not match.")
+            msg.setText("Passwords do not match.")
+            msg.exec_()
         else:
             conn = sqlite3.connect("mlt.db")
             cur = conn.cursor()
-            reg_details = [name, affiliation, username, email, password, password2]
+            reg_details = [name, affiliation, number, email, username, password]
             cur.execute("INSERT INTO USERS ('name','affiliation','number','email','username','password') VALUES" 
         +"(?,?,?,?,?,?)",reg_details)
             conn.commit()
