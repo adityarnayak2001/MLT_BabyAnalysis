@@ -270,7 +270,7 @@
     <string>Confirm Password</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="password_2">
+  <widget class="QLineEdit" name="password2">
    <property name="geometry">
     <rect>
      <x>270</x>
