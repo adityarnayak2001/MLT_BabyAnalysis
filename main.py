@@ -13,13 +13,30 @@ class Login(QDialog):
         self.regButton.clicked.connect(self.gotocreate)
 
     def loginfunction(self):
+        self.error.setText("")
         email = self.email.text()
         password = self.password.text()
-        print("Successfully logged in with email: ", email, "and password:", password)
-        flag = self.db.validate_username_pass(email,password)
-        if flag:
-            print("Login successful")
-            self.db.close_connection()
+        if len(email)==0 or len(password)==0:
+            self.error.setText("Please input all fields.")
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setWindowTitle("Error")
+        # print("Successfully logged in with email: ", email, "and password:", password)
+            data = self.db.validate_username_pass(email,password)
+            if data is not None:
+                for pw in data:
+                        if password == pw:
+                            print("Successfully Logged in.")
+                            msg.setWindowTitle("Success.")
+                            msg.setIcon(QMessageBox.Information)
+                            msg.setText("Successfully Logged in.")
+                            msg.exec_()
+                        else:
+                            self.error.setText("Incorrect password.")
+            else:
+                print("Incorrect username.")
+                self.error.setText("Incorrect username.")
 
     def gotocreate(self):
         # self.db.close_connection()
@@ -36,6 +53,10 @@ class CreateAcc(QDialog):
         # self.confirmpass.setEchoMode(QtWidgets.QLineEdit.Password)
 
     def createaccfunction(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle("Success.")
+
         name = self.name.text()
         affiliation = self.affiliation.text()
         number = self.number.text()
@@ -44,19 +65,29 @@ class CreateAcc(QDialog):
         password = self.password.text()
         password2 = self.password2.text()
         reg_details = {"name":name,"affiliation":affiliation,"username":username,"email":email,
-                        "password":password,"number":number}
-        if(reg_validate(reg_details)):
+                        "password":password,"number":number,"password2":password2}
+
+        if(self.reg_validate(reg_details)):
             self.db = userdbs()
             self.db.registration(reg_details)
-        # if self.password.text()==self.confirmpass.text():
-        #     password=self.password.text()
-        #    print("Successfully created acc with email: ", email, "and password: ", password)
-            # login=Login()
-            # widget.addWidget(login)
-            # widget.setCurrentIndex(widget.currentIndex()+1)
+            self.db.close_connection()
+            login=Login()
+            widget.addWidget(login)
+            widget.setCurrentIndex(widget.currentIndex()+1)
+            msg.setText("User Registration Successfull.")
+            msg.exec_()
+
     
-    def reg_validate():
-        pass
+    def reg_validate(self,data):
+        if len(data['name'])==0 or len(data['affiliation'])==0 or len(data['number'])==0 or len(data['username'])==0 or len(data['email'])==0 or len(data['password'])==0 or len(data['password2'])==0:
+            print("Please fill in all inputs.")
+            self.error.setText("Please input all fields.")
+
+        elif data['password']!=data['password2']:
+            print("Passwords do not match.")
+            self.error.setText("Passwords do not match.")
+        else:
+            return True
 
 app = QApplication(sys.argv)
 mainwindow = Login()

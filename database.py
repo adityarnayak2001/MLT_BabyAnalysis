@@ -10,12 +10,9 @@ class userdbs:
         self.conn.commit()
     
     def validate_username_pass(self,username,password):
-        self.c.execute("select * from users where username=\'"+username+"\' and password=\'"+password+"\'")
-        rows = self.c.fetchall()
-        if(len(rows)):
-            return True
-        else:
-            return False
+        self.c.execute("select password from users where username=\'"+username+"\'")
+        rows = self.c.fetchone()
+        return rows
     
     def registration(self,data):
         self.c.execute("INSERT INTO USERS ('name','affiliation','number','email','username','password') VALUES" 
