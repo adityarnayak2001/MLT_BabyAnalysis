@@ -1,3 +1,5 @@
+from ast import And
+import re
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
@@ -77,8 +79,13 @@ class CreateAcc(QDialog):
             msg.setText("User Registration Successfull.")
             msg.exec_()
 
-    
     def reg_validate(self,data):
+        def email_validate(s):
+            pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+            if re.match(pat,s):
+                return True
+            return False
+
         if len(data['name'])==0 or len(data['affiliation'])==0 or len(data['number'])==0 or len(data['username'])==0 or len(data['email'])==0 or len(data['password'])==0 or len(data['password2'])==0:
             print("Please fill in all inputs.")
             self.error.setText("Please input all fields.")
@@ -86,6 +93,19 @@ class CreateAcc(QDialog):
         elif data['password']!=data['password2']:
             print("Passwords do not match.")
             self.error.setText("Passwords do not match.")
+
+        elif data['number'].isnumeric() == False:
+            print("Please enter a valid phone number.")
+            self.error.setText("Please enter a valid phone number.")
+
+        elif len(data['number']) != 10:
+            print("Please enter a valid phone number.")
+            self.error.setText("Please enter a valid phone number.")
+
+        elif email_validate(data['email']) == False:
+            print("Invalid email address.")
+            self.error.setText("Please enter a valid email address.")
+
         else:
             return True
 
