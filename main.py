@@ -1,6 +1,7 @@
 from ast import And
 import re
 import sys
+from turtle import home
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
 from PyQt5.uic import loadUi
@@ -29,11 +30,14 @@ class Login(QDialog):
             if data is not None:
                 for pw in data:
                         if password == pw:
+                            homepage=HomePage()
+                            widget.addWidget(homepage)
+                            widget.setCurrentIndex(widget.currentIndex()+1)
                             print("Successfully Logged in.")
-                            msg.setWindowTitle("Success.")
-                            msg.setIcon(QMessageBox.Information)
-                            msg.setText("Successfully Logged in.")
-                            msg.exec_()
+                            #msg.setWindowTitle("Success.")
+                            #msg.setIcon(QMessageBox.Information)
+                            #msg.setText("Successfully Logged in.")
+                            #msg.exec_()
                         else:
                             self.error.setText("Incorrect password.")
             else:
@@ -45,7 +49,13 @@ class Login(QDialog):
         createacc=CreateAcc()
         widget.addWidget(createacc)
         widget.setCurrentIndex(widget.currentIndex()+1)
-        
+
+class HomePage(QDialog):
+    def __init__(self):
+        super(HomePage, self).__init__()
+        loadUi("home.ui",self)
+        self.db = userdbs()
+
 class CreateAcc(QDialog):
     def __init__(self):
         super(CreateAcc,self).__init__()
@@ -113,7 +123,7 @@ app = QApplication(sys.argv)
 mainwindow = Login()
 widget = QtWidgets.QStackedWidget()
 widget.addWidget(mainwindow)
-widget.setFixedWidth(500)
-widget.setFixedHeight(600)
+widget.setMinimumWidth(500)
+widget.setMinimumHeight(600)
 widget.show()
 app.exec_()
