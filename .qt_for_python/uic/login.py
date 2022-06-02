@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/radon/Documents/GitHub/Medical Electronics Project/MLT_BabyAnalysis/login.ui'
+# Form implementation generated from reading ui file '/home/radon/Documents/GitHub/MLt Baby Analysis]/MLT_BabyAnalysis/login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -80,6 +80,12 @@ class Ui_Dialog(object):
         self.error.setStyleSheet("color: rgb(255, 0, 0);")
         self.error.setText("")
         self.error.setObjectName("error")
+        self.patButton = QtWidgets.QPushButton(Dialog)
+        self.patButton.setGeometry(QtCore.QRect(190, 380, 100, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.patButton.setFont(font)
+        self.patButton.setObjectName("patButton")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -92,3 +98,4 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "Login"))
         self.regButton.setText(_translate("Dialog", "Register"))
         self.loginButton.setText(_translate("Dialog", "Login"))
+        self.patButton.setText(_translate("Dialog", "Patient"))

@@ -14,6 +14,7 @@ class Login(QDialog):
         self.db = userdbs()
         self.loginButton.clicked.connect(self.loginfunction)
         self.regButton.clicked.connect(self.gotocreate)
+        self.patButton.clicked.connect(self.gotopatient)
 
     def loginfunction(self):
         self.error.setText("")
@@ -50,6 +51,12 @@ class Login(QDialog):
         widget.addWidget(createacc)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
+    def gotopatient(self):
+        # self.db.close_connection()
+        createacc=PatientReg()
+        widget.addWidget(createacc)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
 class HomePage(QDialog):
     def __init__(self):
         super(HomePage, self).__init__()
@@ -80,7 +87,7 @@ class CreateAcc(QDialog):
         password2 = self.password2.text()
         reg_details = {"name":name,"affiliation":affiliation,"username":username,"email":email,
                         "password":password,"number":number,"password2":password2}
-
+        
         if(self.reg_validate(reg_details)):
             self.db = userdbs()
             self.db.registration(reg_details)
@@ -120,6 +127,31 @@ class CreateAcc(QDialog):
 
         else:
             return True
+
+class PatientReg(QDialog):
+    def __init__(self):
+        super(PatientReg,self).__init__()
+        loadUi("patient_reg.ui",self)
+        self.db = userdbs()
+        self.regButton.clicked.connect(self.patientreg)
+    
+    def patientreg(self):
+        name = self.name.text()
+        gest_age = self.gest_age.text()
+        height = self.height.text()
+        weight = self.weight.text()
+        init_obsv = self.init_obsv.text()
+        roa = self.roa.text()
+        reg_details = {"name":name,"gest_age":gest_age,"height":height,"weight":weight,
+                        "init_obsv":init_obsv,"roa":roa}
+        print(reg_details)
+        self.db = userdbs()
+        self.db.patient_reg(reg_details)
+        self.db.close_connection()
+        # login=Login()
+        # widget.addWidget(login)
+        # widget.setCurrentIndex(widget.currentIndex()+1)
+        
 
 app = QApplication(sys.argv)
 mainwindow = Login()

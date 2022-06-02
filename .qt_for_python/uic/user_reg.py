@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/radon/Documents/GitHub/Medical Electronics Project/MLT_BabyAnalysis/user_reg.ui'
+# Form implementation generated from reading ui file '/home/radon/Documents/GitHub/MLt Baby Analysis]/MLT_BabyAnalysis/user_reg.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -59,7 +59,7 @@ class Ui_Dialog(object):
         self.number.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.number.setObjectName("number")
         self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(120, 40, 251, 41))
+        self.label_3.setGeometry(QtCore.QRect(140, 40, 251, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -74,7 +74,7 @@ class Ui_Dialog(object):
         self.email.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.email.setObjectName("email")
         self.regButton = QtWidgets.QPushButton(Dialog)
-        self.regButton.setGeometry(QtCore.QRect(180, 550, 100, 30))
+        self.regButton.setGeometry(QtCore.QRect(180, 530, 100, 30))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.regButton.setFont(font)

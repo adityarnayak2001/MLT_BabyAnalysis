@@ -13,11 +13,14 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(213, 235, 255);</string>
+  </property>
+  <widget class="QPushButton" name="regButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>520</y>
+     <x>190</x>
+     <y>490</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -35,7 +38,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>250</y>
+     <y>180</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -59,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>100</y>
+     <y>120</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -79,31 +82,37 @@
     <string>Name</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="gest_age">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>250</y>
+     <y>180</y>
      <width>200</width>
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="name">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>100</y>
+     <y>120</y>
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>40</y>
+     <x>130</x>
+     <y>50</y>
      <width>260</width>
      <height>31</height>
     </rect>
@@ -127,7 +136,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>400</y>
+     <y>360</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -147,31 +156,37 @@
     <string>Initial Observation</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="roa">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>450</y>
+     <y>420</y>
      <width>200</width>
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="init_obsv">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>400</y>
+     <y>360</y>
      <width>200</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>450</y>
+     <y>420</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -191,7 +206,20 @@
     <string>Reason For Admit</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="height">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>240</y>
+     <width>200</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="weight">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -200,22 +228,15 @@
      <height>25</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>350</y>
-     <width>200</width>
-     <height>25</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>300</y>
+     <y>240</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -239,7 +260,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>350</y>
+     <y>300</y>
      <width>200</width>
      <height>25</height>
     </rect>
@@ -257,80 +278,6 @@
    </property>
    <property name="text">
     <string>Weight</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>200</y>
-     <width>200</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>150</y>
-     <width>200</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>150</y>
-     <width>200</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Username</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>200</y>
-     <width>200</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Password</string>
    </property>
   </widget>
  </widget>
