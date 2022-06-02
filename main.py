@@ -53,6 +53,8 @@ class Login(QDialog):
 class HomePage(QDialog):
     def __init__(self):
         super(HomePage, self).__init__()
+        widget.setFixedHeight(853)
+        widget.setFixedWidth(1446)
         loadUi("home.ui",self)
         self.db = userdbs()
 
