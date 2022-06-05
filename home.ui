@@ -26,7 +26,7 @@
     <string>Add Patient</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="patients">
+  <widget class="QComboBox" name="patients_combo">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -35,37 +35,6 @@
      <height>22</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>Patient 1</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Patient 2</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Patient 3</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Patient 4</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>1119</x>
-     <y>-1</y>
-     <width>321</width>
-     <height>851</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2"/>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
@@ -92,6 +61,172 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="videoFeed">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>90</y>
+     <width>700</width>
+     <height>500</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Video Feed</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CancelBTN">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>630</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pause Feed</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="feedStart">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>630</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Start Feed</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>10</y>
+     <width>291</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Patient Details</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="p_name">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Name: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="p_age">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>75</y>
+      <width>251</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Gestational Age: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="p_height">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Height: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="p_weight">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Weight: </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getDetails">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>167</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Get Details</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -13,6 +13,16 @@ class userdbs:
                     +"initial_observation VARCHAR(100), reason_for_admit VARCHAR(100))")
         self.conn.commit()
 
+    def pn_combo(self):
+        self.c.execute("SELECT name FROM PATIENTS")
+        pnlist = self.c.fetchall()
+        return pnlist
+
+    def getPatientDetails(self, p_name):
+        self.c.execute("SELECT gest_age, height, weight FROM PATIENTS where name =\'"+p_name+"\'")
+        details = self.c.fetchall()
+        return details
+
     def validate_username_pass(self,username,password):
         self.c.execute("select password from users where username=\'"+username+"\'")
         rows = self.c.fetchone()

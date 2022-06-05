@@ -175,24 +175,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="patButton">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>380</y>
-     <width>100</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Patient</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

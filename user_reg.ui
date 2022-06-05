@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>499</width>
     <height>600</height>
    </rect>
   </property>
@@ -157,7 +157,7 @@
   <widget class="QPushButton" name="regButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>360</x>
      <y>530</y>
      <width>100</width>
      <height>30</height>
@@ -334,6 +334,24 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>530</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
    </property>
   </widget>
  </widget>
