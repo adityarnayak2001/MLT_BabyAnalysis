@@ -18,9 +18,11 @@ class Worker1(QThread):
                 Pic = ConvertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.ImageUpdate.emit(Pic)
 
-    def stop(self):
-        self.ThreadActive = False
-        #self.quit()
-        self.wait()
-        #self.is_paused = True
-
+    def pause(self):
+        self.ThreadActive = True
+        Capture1 = cv2.VideoCapture(0)
+        while self.ThreadActive:
+            ret, frame = Capture1.read()
+            if ret:
+                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                cv2.imshow('frame', Image)
