@@ -12,6 +12,8 @@ from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
 import os
 from random import randint
+import urllib.request as ur
+import json
 
 class Login(QDialog):
     def __init__(self):
@@ -86,9 +88,23 @@ class HomePage(QDialog):
         self.p_height.setText("Height: "+str(height))
         self.p_weight.setText("Weight: "+str(weight))
         
+        def get_json(n):
+            res=[]
+            url = "https://thingspeak.com/channels/1347725/field/"+n+".json"
+            response = ur.urlopen(url)
+            data =json.loads(response.read())
+            data = data["feeds"]
+            def sort_by_key(list):
+                return list['entry_id']
+            data=sorted(data, key=sort_by_key)
+            for x in data:
+                res.append(float(x["field"+n]))
+            return list(range(len(res))),res
+
         #SpO2 Graph
-        self.x = list(range(100))  # 100 time points
-        self.y = [randint(0,100) for _ in range(100)]
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.x,self.y=get_json("1")
         self.spo2_graphWidget.setBackground('w')
         self.spo2_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
@@ -99,8 +115,9 @@ class HomePage(QDialog):
         self.timer.start()
 
         #Heart Rate Graph
-        self.x = list(range(100))  # 100 time points
-        self.y = [randint(0,100) for _ in range(100)]
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.x,self.y=get_json("2")
         self.hr_graphWidget.setBackground('w')
         self.hr_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
