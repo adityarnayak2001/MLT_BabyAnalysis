@@ -68,9 +68,14 @@ class HomePage(QDialog):
         self.db = userdbs()
         self.addPatient.clicked.connect(self.gotopatient)
         self.VBL = QVBoxLayout()
+        self.saveTimer = QTimer()
         self.VBL.addWidget(self.videoFeed)
-        self.feedStart.clicked.connect(self.thread)
+        self.feedStart.clicked.connect(self.controlTimer)
+
+        
+
         self.CancelBTN.clicked.connect(self.PauseFeed)
+        
         pnlist = self.db.pn_combo()
         pn_list = [i[0] for i in pnlist]
         self.patients_combo.addItems(pn_list)
@@ -87,6 +92,9 @@ class HomePage(QDialog):
         self.p_age.setText("Gestational Age: "+str(gest_age))
         self.p_height.setText("Height: "+str(height))
         self.p_weight.setText("Weight: "+str(weight))
+        self.th1 = Thread1(self)
+        self.th1.changePixmap.connect(self.setImage)
+        self.th1.start()
         
         def get_json(n):
             res=[]
@@ -146,26 +154,50 @@ class HomePage(QDialog):
         self.y.append(randint(0,100))  # Add a new random value.
         self.data_line.setData(self.x, self.y)
 
-    def ImageUpdateSlot(self, Image):
-        self.videoFeed.setPixmap(QPixmap.fromImage(Image))
+    #def ImageUpdateSlot(self, Image):
+     #   self.videoFeed.setPixmap(QPixmap.fromImage(Image))
 
-    def thread(self1):
-        t1 = Thread(target=self1.startFeed)
-        t1.start()
+    #def thread(self1):
+    #    t1 = Thread(target=self1.startFeed)
+    #    t1.start()
 
-    def startFeed(self):
-        self.Worker1 = Worker1()
-        self.Worker1.start()
-        self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
-        self.setLayout(self.VBL)
+    #def startFeed(self):
+    #    self.Worker1 = Worker1()
+    #    self.Worker1.start()
+    #    self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
+    #    self.setLayout(self.VBL)
 
     def PauseFeed(self):
-        self._running = False
-        self.worker1 = Worker1()
-        self.worker1.pause()
+        if self.th1.active:
+            self.th1.terminate()
+    #    self._running = False
+    #    self.worker1 = Worker1()
+    #    self.worker1.pause()
         #homePage=HomePage()
         #widget.addWidget(homePage)
         #widget.setCurrentIndex(widget.currentIndex()+1)
+
+        #-----------------------------------------------------------------------------
+    @QtCore.pyqtSlot(QImage)
+    def setImage(self, Image):
+        self.videoFeed.setPixmap(QPixmap.fromImage(Image))
+
+    def controlTimer(self):
+        if not self.saveTimer.isActive():
+            # write video
+            self.saveTimer.start()
+            self.th2 = Thread2(self)
+            self.th2.active = True                                
+            self.th2.start()
+          
+        #else:
+            # stop writing
+         #   self.saveTimer.stop()
+          #  self.th2.active = False                   
+           # self.th2.stop()                         
+            #self.th2.terminate()                    
+    
+        #-----------------------------------------------------------------------------
 
     def gotopatient(self):
         # self.db.close_connection()

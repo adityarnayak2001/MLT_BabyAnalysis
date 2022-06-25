@@ -1,42 +1,56 @@
 import sys
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
 import cv2
 import datetime
 import pytz
 
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtCore import QTimer, QThread, pyqtSignal, pyqtSlot
+from PyQt5 import QtWidgets, QtCore, QtGui
 
-class Worker1(QThread):
-    ImageUpdate = pyqtSignal(QImage)
+class Thread1(QThread):
+    changePixmap = pyqtSignal(QImage)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+        self.active = True
+
     def run(self):
-        current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        #self.ThreadActive = True
-        Capture = cv2.VideoCapture(0)
-        frame_width = int(Capture.get(3))
-        frame_height = int(Capture.get(4))
-        filename = "".join(["outpy_",current_time.strftime("%Y-%m-%d_%H:%M:%S"),".avi"])
-        #filename = "outpy_"+current_time.strftime("%Y-%m-%d_%H:%M:%S")+".avi"
-        #print(filename)
-        out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+        self.cap1 = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        self.cap1.set(3,480)
+        self.cap1.set(4,640)
+        self.cap1.set(5,30)
+        while True:
+            ret1, image1 = self.cap1.read()
+            if ret1:
+                im1 = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)
+                FlippedImage = cv2.flip(im1, 1)
+                height1, width1, channel1 = FlippedImage.shape
+                step1 = channel1 * width1
+                qImg1 = QImage(FlippedImage.data, width1, height1, step1, QImage.Format_RGB888)
+                self.changePixmap.emit(qImg1)
 
-        while(True):
-            ret, frame = Capture.read()
-            if ret:
-                out.write(frame)
-                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                FlippedImage = cv2.flip(Image, 1)
-                ConvertToQtFormat = QImage(FlippedImage.data, FlippedImage.shape[1], FlippedImage.shape[0], QImage.Format_RGB888)
-                Pic = ConvertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
-                self.ImageUpdate.emit(Pic)
-                
+class Thread2(QThread):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+        self.active = True
 
-    def pause(self):
-        #self.ThreadActive = True
-        Capture1 = cv2.VideoCapture(0)
-        while(True):
-            ret, frame = Capture1.read()
-            if ret:
-                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                cv2.imshow('frame', Image)
-                cv2.waitKey(1)
+    def run(self):
+        if self.active:        
+            current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
+            filename = "video_"+current_time.strftime("%m-%d_%H:%M:%S")+".avi"    
+            self.fourcc = cv2.VideoWriter_fourcc(*'XVID') 
+            self.out1 = cv2.VideoWriter('Recordings/output.avi', self.fourcc, 30, (640,480))
+            self.cap1 = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+            self.cap1.set(3, 480)
+            self.cap1.set(4, 640)
+            self.cap1.set(5, 30)
+            while self.active:                      
+                ret1, image1 = self.cap1.read()
+                if ret1:
+                    self.out1.write(image1)     
+                self.msleep(10)                      
+
+    def stop(self):
+        self.out1.release()
