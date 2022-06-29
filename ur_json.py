@@ -24,9 +24,11 @@ def get_json():
                 return list['entry_id']
             print("\nArray of JSON objects after sorting:")
             data=sorted(data, key=sort_by_key)
+           # print(data)
             for x in data:
                 res.append(x["field1"])
-            return list(range(len(res))),res
+            # res.reverse()
+            return len(res),res
 x,y=get_json()
 print(x)
 print("hgello",len(y))

@@ -1,24 +1,26 @@
-from ast import And
+import os
 import re
 import sys
+import json
+import pyqtgraph as pg
+from ast import And
 from turtle import home
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
 from PyQt5.uic import loadUi
 from database import userdbs
 from video_thread import *
 from threading import *
 from pyqtgraph import PlotWidget, plot
-import pyqtgraph as pg
-import os
+from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QDesktopWidget
+
 from random import randint
 import urllib.request as ur
-import json
+
 
 class Login(QDialog):
     def __init__(self):
         super(Login,self).__init__()
-        loadUi("login.ui",self)
+        loadUi("./ui/login.ui",self)
         self.db = userdbs()
         self.loginButton.clicked.connect(self.loginfunction)
         self.regButton.clicked.connect(self.gotocreate)
@@ -64,16 +66,14 @@ class HomePage(QDialog):
         super(HomePage, self).__init__()
         widget.setFixedHeight(853)
         widget.setFixedWidth(1446)
-        loadUi("home.ui",self)
+        loadUi("./ui/home.ui",self)
+        self.centerWin()
         self.db = userdbs()
         self.addPatient.clicked.connect(self.gotopatient)
         self.VBL = QVBoxLayout()
         self.saveTimer = QTimer()
         self.VBL.addWidget(self.videoFeed)
         self.feedStart.clicked.connect(self.controlTimer)
-
-        
-
         self.CancelBTN.clicked.connect(self.PauseFeed)
         
         pnlist = self.db.pn_combo()
@@ -81,6 +81,13 @@ class HomePage(QDialog):
         self.patients_combo.addItems(pn_list)
         print(self.patients_combo.currentText())
         self.getDetails.pressed.connect(self.patientDetails)
+
+    def centerWin(self):
+        qtRectangle = self.frameGeometry()
+        centerPoint = QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
+        self.show()
 
     def patientDetails(self):
         p_name = self.patients_combo.currentText()
@@ -112,40 +119,41 @@ class HomePage(QDialog):
         #SpO2 Graph
         # self.x = list(range(100))  # 100 time points
         # self.y = [randint(0,100) for _ in range(100)]
-        self.x,self.y=get_json("1")
+        self.a,self.b=get_json("1")
         self.spo2_graphWidget.setBackground('w')
         self.spo2_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
-        self.data_line =  self.spo2_graphWidget.plot(self.x, self.y, pen=pen)
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot_data)
-        self.timer.start()
+        self.data_line =  self.spo2_graphWidget.plot(self.a, self.b, pen=pen)
+        # self.timer1 = QtCore.QTimer()
+        # self.timer1.setInterval(50)
+        # self.timer1.timeout.connect(self.update_plot_data1)
+        # self.timer1.start()
 
         #Heart Rate Graph
         # self.x = list(range(100))  # 100 time points
         # self.y = [randint(0,100) for _ in range(100)]
-        self.x,self.y=get_json("2")
+        self.c,self.d=get_json("2")
         self.hr_graphWidget.setBackground('w')
         self.hr_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
-        self.data_line =  self.hr_graphWidget.plot(self.x, self.y, pen=pen)
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot_data)
-        self.timer.start()
+        self.data_line =  self.hr_graphWidget.plot(self.c, self.d, pen=pen)
+        # self.timer2 = QtCore.QTimer()
+        # self.timer2.setInterval(50)
+        # self.timer2.timeout.connect(self.update_plot_data2)
+        # self.timer2.start()
 
         #Temp Rate Graph
-        self.x = list(range(100))  # 100 time points
-        self.y = [randint(0,100) for _ in range(100)]
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.e,self.f=get_json("3")
         self.temp_graphWidget.setBackground('w')
         self.temp_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
-        self.data_line =  self.temp_graphWidget.plot(self.x, self.y, pen=pen)
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot_data)
-        self.timer.start()
+        self.data_line =  self.temp_graphWidget.plot(self.e, self.f, pen=pen)
+        # self.timer3 = QtCore.QTimer()
+        # self.timer3.setInterval(50)
+        # self.timer3.timeout.connect(self.update_plot_data)
+        # self.timer3.start()
 
     def update_plot_data(self):
         self.x = self.x[1:]  # Remove the first y element.
@@ -154,6 +162,21 @@ class HomePage(QDialog):
         self.y.append(randint(0,100))  # Add a new random value.
         self.data_line.setData(self.x, self.y)
 
+    def update_plot_data1(self):
+        temp_a,temp_b=self.get_json("1")
+        print(temp_b)
+        self.a = self.a[1:]  # Remove the first y element.
+        self.a.append(self.a[-1] + 1)  # Add a new value 1 higher than the last.
+        self.b = self.b[1:]  # Remove the first
+        self.b.append(temp_b)  # Add a new random value.
+        self.data_line.setData(self.a, self.b)
+    
+    def update_plot_data(self):
+        self.x = self.x[1:]  # Remove the first y element.
+        self.x.append(self.x[-1] + 1)  # Add a new value 1 higher than the last.
+        self.y = self.y[1:]  # Remove the first
+        self.y.append(randint(0,100))  # Add a new random value.
+        self.data_line.setData(self.x, self.y)
     #def ImageUpdateSlot(self, Image):
      #   self.videoFeed.setPixmap(QPixmap.fromImage(Image))
 
@@ -208,7 +231,7 @@ class HomePage(QDialog):
 class CreateAcc(QDialog):
     def __init__(self):
         super(CreateAcc,self).__init__()
-        loadUi("user_reg.ui",self)
+        loadUi("./ui/user_reg.ui",self)
         self.regButton.clicked.connect(self.createaccfunction)
         self.cancelButton.clicked.connect(self.cancelUserReg)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -282,7 +305,7 @@ class CreateAcc(QDialog):
 class PatientReg(QDialog):
     def __init__(self):
         super(PatientReg,self).__init__()
-        loadUi("patient_reg.ui",self)
+        loadUi("./ui/patient_reg.ui",self)
         self.db = userdbs()
         self.regButton.clicked.connect(self.patientreg)
         self.cancelButton.clicked.connect(self.cancelreg)
