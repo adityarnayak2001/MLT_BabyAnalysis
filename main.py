@@ -99,9 +99,10 @@ class HomePage(QDialog):
         self.p_age.setText("Gestational Age: "+str(gest_age))
         self.p_height.setText("Height: "+str(height))
         self.p_weight.setText("Weight: "+str(weight))
-        self.th1 = Thread1(self)
-        self.th1.changePixmap.connect(self.setImage)
-        self.th1.start()
+        #self.th1 = Thread1(self)
+        #self.th1.changePixmap.connect(self.setImage)
+        #self.th1.start()
+        #self.controlTimer()
         
         def get_json(n):
             res=[]
@@ -123,7 +124,9 @@ class HomePage(QDialog):
         self.spo2_graphWidget.setBackground('w')
         self.spo2_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
+        self.spo2_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=150)
         self.data_line =  self.spo2_graphWidget.plot(self.a, self.b, pen=pen)
+        self.spo2.setText(str(self.b[-1]))
         # self.timer1 = QtCore.QTimer()
         # self.timer1.setInterval(50)
         # self.timer1.timeout.connect(self.update_plot_data1)
@@ -137,6 +140,7 @@ class HomePage(QDialog):
         self.hr_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
         self.data_line =  self.hr_graphWidget.plot(self.c, self.d, pen=pen)
+        self.temp.setText(str(self.d[-1]))
         # self.timer2 = QtCore.QTimer()
         # self.timer2.setInterval(50)
         # self.timer2.timeout.connect(self.update_plot_data2)
@@ -149,7 +153,9 @@ class HomePage(QDialog):
         self.temp_graphWidget.setBackground('w')
         self.temp_graphWidget.clear()
         pen = pg.mkPen(color=(255, 0, 0))
+        self.temp_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=300)
         self.data_line =  self.temp_graphWidget.plot(self.e, self.f, pen=pen)
+        self.heartrate.setText(str(self.f[-1]))
         # self.timer3 = QtCore.QTimer()
         # self.timer3.setInterval(50)
         # self.timer3.timeout.connect(self.update_plot_data)
@@ -191,8 +197,10 @@ class HomePage(QDialog):
     #    self.setLayout(self.VBL)
 
     def PauseFeed(self):
-        if self.th1.active:
-            self.th1.terminate()
+        if self.th2.active:
+            self.th2.terminate()
+            self.saveTimer.stop()
+        #sself.controlTimer()
     #    self._running = False
     #    self.worker1 = Worker1()
     #    self.worker1.pause()
@@ -206,10 +214,12 @@ class HomePage(QDialog):
         self.videoFeed.setPixmap(QPixmap.fromImage(Image))
 
     def controlTimer(self):
+        
         if not self.saveTimer.isActive():
             # write video
             self.saveTimer.start()
             self.th2 = Thread2(self)
+            self.th2.changePixmap.connect(self.setImage)
             self.th2.active = True                                
             self.th2.start()
           
