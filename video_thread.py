@@ -43,10 +43,12 @@ class Thread2(QThread):
     def run(self):
         if self.active:        
             current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-            timestamp = current_time.strftime("%Y:%m:%d-%H:%M:%S")
-            filename = '{}/{}.avi'.format("Recordings",timestamp)    
+            timestamp = current_time.strftime("%d/%m/%Y %H:%M:%S")
+            timestamp = timestamp.replace('/', '_')
+            timestamp = timestamp.replace(':', '_')
+            filename = 'video_'+timestamp+'.avi'    
             self.fourcc = cv2.VideoWriter_fourcc(*'XVID') 
-            self.out1 = cv2.VideoWriter(filename, self.fourcc, 30, (1280,720))
+            self.out1 = cv2.VideoWriter('Recordings/'+filename, self.fourcc, 30, (1280,720))
             self.cap1 = cv2.VideoCapture(0, cv2.CAP_DSHOW)
             self.cap1.set(3, 720)
             self.cap1.set(4, 1280)

@@ -45,10 +45,7 @@ class Login(QDialog):
                             widget.addWidget(homepage)
                             widget.setCurrentIndex(widget.currentIndex()+1)
                             print("Successfully Logged in.")
-                            #msg.setWindowTitle("Success.")
-                            #msg.setIcon(QMessageBox.Information)
-                            #msg.setText("Successfully Logged in.")
-                            #msg.exec_()
+                           
                         else:
                             self.error.setText("Incorrect password.")
             else:
@@ -99,12 +96,89 @@ class HomePage(QDialog):
         self.p_age.setText("Gestational Age: "+str(gest_age))
         self.p_height.setText("Height: "+str(height))
         self.p_weight.setText("Weight: "+str(weight))
-        #self.th1 = Thread1(self)
-        #self.th1.changePixmap.connect(self.setImage)
-        #self.th1.start()
-        #self.controlTimer()
-        
-        def get_json(n):
+
+        #SpO2 Graph
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.spo2_id=0
+        self.a,self.b,self.spo2_id=self.get_json("1",self.spo2_id)
+        self.spo2_graphWidget.setBackground('w')
+        self.spo2_graphWidget.clear()
+        pen = pg.mkPen(color=(255, 0, 0))
+        self.spo2_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=150)
+        self.data_line1 =  self.spo2_graphWidget.plot(self.a, self.b, pen=pen)
+        self.spo2.setText(str(self.b[-1]))
+        self.timer1 = QtCore.QTimer()
+        self.timer1.setInterval(50)
+        self.timer1.timeout.connect(self.update_plot_data1)
+        self.timer1.start()
+
+        #Heart Rate Graph
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.heartrate_id=0
+        self.c,self.d,self.heartrate_id=self.get_json("2",self.heartrate_id)
+        self.hr_graphWidget.setBackground('w')
+        self.hr_graphWidget.clear()
+        pen = pg.mkPen(color=(255, 0, 0))
+        self.data_line2 =  self.hr_graphWidget.plot(self.c, self.d, pen=pen)
+        self.temp.setText(str(self.d[-1]))
+        self.timer2 = QtCore.QTimer()
+        self.timer2.setInterval(50)
+        self.timer2.timeout.connect(self.update_plot_data2)
+        self.timer2.start()
+
+        #Temp Rate Graph
+        # self.x = list(range(100))  # 100 time points
+        # self.y = [randint(0,100) for _ in range(100)]
+        self.temprate_id=0
+        self.e,self.f,self.temprate_id=self.get_json("3",self.temprate_id)
+        self.temp_graphWidget.setBackground('w')
+        self.temp_graphWidget.clear()
+        pen = pg.mkPen(color=(255, 0, 0))
+        self.temp_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=300)
+        self.data_line3 =  self.temp_graphWidget.plot(self.e, self.f, pen=pen)
+        self.heartrate.setText(str(self.f[-1]))
+        self.timer3 = QtCore.QTimer()
+        self.timer3.setInterval(50)
+        self.timer3.timeout.connect(self.update_plot_data3)
+        self.timer3.start()
+
+    def update_plot_data1(self):
+        #print('reached1')
+        temp_b,self.spo2_id=self.get_json("1",self.spo2_id)
+        #print(temp_b)
+        self.a.pop(0)  # Remove the first y element.
+        self.a.append(self.a[-1] + 1)  # Add a new value 1 higher than the last.
+        self.b.pop(0)  # Remove the first
+        self.b.append(temp_b)  # Add a new random value.
+        self.data_line1.setData(self.a, self.b)
+        self.spo2.setText(str(self.b[-1]))
+    
+    def update_plot_data2(self):
+        #print('reached2')
+        temp_c,self.heartrate_id=self.get_json("2",self.heartrate_id)
+        #print(temp_c)
+        self.c.pop(0)  # Remove the first y element.
+        self.c.append(self.c[-1] + 1)  # Add a new value 1 higher than the last.
+        self.d.pop(0)  # Remove the first
+        self.d.append(temp_c)  # Add a new random value.
+        self.data_line2.setData(self.c, self.d)
+        self.heartrate.setText(str(self.f[-1]))
+        self.temp.setText(str(self.d[-1]))
+
+
+    def update_plot_data3(self):
+        #print('reached3')
+        temp_d,self.temprate_id=self.get_json("3",self.temprate_id)
+        #print(temp_d)
+        self.e.pop(0)  # Remove the first y element.
+        self.e.append(self.e[-1] + 1)  # Add a new value 1 higher than the last.
+        self.f.pop(0)  # Remove the first
+        self.f.append(temp_d)  # Add a new random value.
+        self.data_line3.setData(self.e, self.f)
+
+    def get_json(self,n,id):  
             res=[]
             url = "https://thingspeak.com/channels/1347725/field/"+n+".json"
             response = ur.urlopen(url)
@@ -113,100 +187,20 @@ class HomePage(QDialog):
             def sort_by_key(list):
                 return list['entry_id']
             data=sorted(data, key=sort_by_key)
+            if(id==0):
+                data=data[:10]
+                for x in data:
+                    res.append(int(float(x["field"+n])))
+                #print(res)
+                return list(range(10)),res,data[9]['entry_id']+1
             for x in data:
-                res.append(float(x["field"+n]))
-            return list(range(len(res))),res
-
-        #SpO2 Graph
-        # self.x = list(range(100))  # 100 time points
-        # self.y = [randint(0,100) for _ in range(100)]
-        self.a,self.b=get_json("1")
-        self.spo2_graphWidget.setBackground('w')
-        self.spo2_graphWidget.clear()
-        pen = pg.mkPen(color=(255, 0, 0))
-        self.spo2_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=150)
-        self.data_line =  self.spo2_graphWidget.plot(self.a, self.b, pen=pen)
-        self.spo2.setText(str(self.b[-1]))
-        # self.timer1 = QtCore.QTimer()
-        # self.timer1.setInterval(50)
-        # self.timer1.timeout.connect(self.update_plot_data1)
-        # self.timer1.start()
-
-        #Heart Rate Graph
-        # self.x = list(range(100))  # 100 time points
-        # self.y = [randint(0,100) for _ in range(100)]
-        self.c,self.d=get_json("2")
-        self.hr_graphWidget.setBackground('w')
-        self.hr_graphWidget.clear()
-        pen = pg.mkPen(color=(255, 0, 0))
-        self.data_line =  self.hr_graphWidget.plot(self.c, self.d, pen=pen)
-        self.temp.setText(str(self.d[-1]))
-        # self.timer2 = QtCore.QTimer()
-        # self.timer2.setInterval(50)
-        # self.timer2.timeout.connect(self.update_plot_data2)
-        # self.timer2.start()
-
-        #Temp Rate Graph
-        # self.x = list(range(100))  # 100 time points
-        # self.y = [randint(0,100) for _ in range(100)]
-        self.e,self.f=get_json("3")
-        self.temp_graphWidget.setBackground('w')
-        self.temp_graphWidget.clear()
-        pen = pg.mkPen(color=(255, 0, 0))
-        self.temp_graphWidget.plotItem.vb.setLimits(xMin=0, xMax=120, yMin=0, yMax=300)
-        self.data_line =  self.temp_graphWidget.plot(self.e, self.f, pen=pen)
-        self.heartrate.setText(str(self.f[-1]))
-        # self.timer3 = QtCore.QTimer()
-        # self.timer3.setInterval(50)
-        # self.timer3.timeout.connect(self.update_plot_data)
-        # self.timer3.start()
-
-    def update_plot_data(self):
-        self.x = self.x[1:]  # Remove the first y element.
-        self.x.append(self.x[-1] + 1)  # Add a new value 1 higher than the last.
-        self.y = self.y[1:]  # Remove the first
-        self.y.append(randint(0,100))  # Add a new random value.
-        self.data_line.setData(self.x, self.y)
-
-    def update_plot_data1(self):
-        temp_a,temp_b=self.get_json("1")
-        print(temp_b)
-        self.a = self.a[1:]  # Remove the first y element.
-        self.a.append(self.a[-1] + 1)  # Add a new value 1 higher than the last.
-        self.b = self.b[1:]  # Remove the first
-        self.b.append(temp_b)  # Add a new random value.
-        self.data_line.setData(self.a, self.b)
-    
-    def update_plot_data(self):
-        self.x = self.x[1:]  # Remove the first y element.
-        self.x.append(self.x[-1] + 1)  # Add a new value 1 higher than the last.
-        self.y = self.y[1:]  # Remove the first
-        self.y.append(randint(0,100))  # Add a new random value.
-        self.data_line.setData(self.x, self.y)
-    #def ImageUpdateSlot(self, Image):
-     #   self.videoFeed.setPixmap(QPixmap.fromImage(Image))
-
-    #def thread(self1):
-    #    t1 = Thread(target=self1.startFeed)
-    #    t1.start()
-
-    #def startFeed(self):
-    #    self.Worker1 = Worker1()
-    #    self.Worker1.start()
-    #    self.Worker1.ImageUpdate.connect(self.ImageUpdateSlot)
-    #    self.setLayout(self.VBL)
+                if(x['entry_id']==id):
+                    return int(float(x["field"+n])),x['entry_id']+1
 
     def PauseFeed(self):
         if self.th2.active:
             self.th2.terminate()
             self.saveTimer.stop()
-        #sself.controlTimer()
-    #    self._running = False
-    #    self.worker1 = Worker1()
-    #    self.worker1.pause()
-        #homePage=HomePage()
-        #widget.addWidget(homePage)
-        #widget.setCurrentIndex(widget.currentIndex()+1)
 
         #-----------------------------------------------------------------------------
     @QtCore.pyqtSlot(QImage)
@@ -222,13 +216,7 @@ class HomePage(QDialog):
             self.th2.changePixmap.connect(self.setImage)
             self.th2.active = True                                
             self.th2.start()
-          
-        #else:
-            # stop writing
-         #   self.saveTimer.stop()
-          #  self.th2.active = False                   
-           # self.th2.stop()                         
-            #self.th2.terminate()                    
+                             
     
         #-----------------------------------------------------------------------------
 
